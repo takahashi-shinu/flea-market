@@ -1,0 +1,89 @@
+.top-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 150px 20px;
+}
+
+/* タブ */
+.tab-area {
+    width: 100%;
+    height: 47px;
+    padding-left: 129px;
+    display: flex;
+    gap: 40px;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 40px;
+}
+
+.tab {
+    padding-bottom: 12px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #666;
+}
+
+.tab.active {
+    color: red;
+    font-weight: bold;
+    /* border-bottom: 2px solid red; */
+}
+
+/* 商品一覧 */
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+/* 商品カード */
+.item-card {
+    text-align: left;
+}
+
+.item-card a {
+    text-decoration: none;
+    color: #000;
+}
+
+.item-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.no-image {
+    font-size: 18px;
+}
+
+/* Sold */
+.sold-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff5555;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item-name {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.empty-text {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #666;
+}
