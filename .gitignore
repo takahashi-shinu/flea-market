@@ -1,1 +1,13 @@
+# macOS
+.DS_Store
+
+# Local git ignore file
 .gitignore_global
+
+# Docker MySQL data (DO NOT COMMIT)
+docker/mysql/data/
+docker/mysql/data/**
+
+# Laravel
+src/vendor/
+src/.env
