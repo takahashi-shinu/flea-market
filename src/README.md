@@ -212,7 +212,7 @@ purchasesは「注文（Order）」の役割を持ち、Stripeは「決済（Pay
  - User4 (テスト商品４〜６を出品)
   - Email：sample4@example.com
   - Password：abc12345
- - User5 (プロフィール未編集、出品なし)
+ - User5 (出品なし)
   - Email：sample5@example.com
   - Password：abc12345
 

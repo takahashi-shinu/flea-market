@@ -17,12 +17,10 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $user1 = User::find(1);
-        $user2 = User::find(2);
-        if (!$user1 || !$user2) {
-        $this->command->error("ID 1 または 2 のユーザーが見つかりません。シーダーを中断します。");
-        return;
-    }
+        $user1 = User::where('email', 'sample1@example.com')->first();
+        $user2 = User::where('email', 'sample2@example.com')->first();
+        $user3 = User::where('email', 'sample3@example.com')->first();
+        $user4 = User::where('email', 'sample4@example.com')->first();
 
         $fashion = Category::where('name', 'ファッション')->first()->id;
         $consumer_electronic = Category::where('name', '家電')->first()->id;
@@ -49,6 +47,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '良好',
             'price' => 15000,
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
+            'status' => Item::STATUS_SELLING,
         ]);
         $ArmaniMensClock->categories()->sync([$fashion, $mens]);
 
@@ -60,6 +59,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '目立った傷や汚れなし',
             'price' => 5000,
             'description' => '高速で信頼性の高いハードディスク',
+            'status' => Item::STATUS_SELLING,
         ]);
         $HDDHardDisk->categories()->sync([$consumer_electronic]);
 
@@ -71,6 +71,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => 'やや傷や汚れあり',
             'price' => 300,
             'description' => '新鮮な玉ねぎ３束のセット',
+            'status' => Item::STATUS_SELLING,
         ]);
         $Onion->categories()->sync([$daily_necessity]);
 
@@ -82,6 +83,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '状態が悪い',
             'price' => 4000,
             'description' => 'クラシックなデザインの革靴',
+            'status' => Item::STATUS_SELLING,
         ]);
         $Shoes->categories()->sync([$fashion, $mens]);
 
@@ -93,6 +95,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '良好',
             'price' => 45000,
             'description' => '高性能なノートパソコン',
+            'status' => Item::STATUS_SELLING,
         ]);
         $NotePC->categories()->sync([$consumer_electronic]);
 
@@ -104,6 +107,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '目立った傷や汚れなし',
             'price' => 8000,
             'description' => '高音質のレコーディング用マイク',
+            'status' => Item::STATUS_SELLING,
         ]);
         $MusicMic->categories()->sync([$consumer_electronic]);
 
@@ -115,6 +119,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => 'やや傷や汚れあり',
             'price' => 3500,
             'description' => 'おしゃれなショルダーバッグ',
+            'status' => Item::STATUS_SELLING,
         ]);
         $fashionPocket->categories()->sync([$fashion, $ladies]);
 
@@ -126,6 +131,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '状態が悪い',
             'price' => 500,
             'description' => '使いやすいタンブラー',
+            'status' => Item::STATUS_SELLING,
         ]);
         $Tumbler->categories()->sync([$daily_necessity, $kitchen]);
 
@@ -137,6 +143,7 @@ class ItemsTableSeeder extends Seeder
             'condition' => '良好',
             'price' => 4000,
             'description' => '手動のコーヒーミル',
+            'status' => Item::STATUS_SELLING,
         ]);
         $CoffeeGrinder->categories()->sync([$daily_necessity, $kitchen]);
 
@@ -148,7 +155,80 @@ class ItemsTableSeeder extends Seeder
             'condition' => '目立った傷や汚れなし',
             'price' => 2500,
             'description' => '便利なメイクアップセット',
+            'status' => Item::STATUS_SELLING,
         ]);
         $MakeupSet->categories()->sync([$cosmetic]);
+
+        $TV = Item::create([
+            'user_id' => $user3->id,
+            'name' => 'テレビ',
+            'image' => 'items/4kTV.png',
+            'brand_name' => 'Hise',
+            'condition' => '目立った傷や汚れなし',
+            'price' => 50000,
+            'description' => '55inch 大画面4kテレビ',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $TV->categories()->sync([$consumer_electronic]);
+
+        $SofaBed = Item::create([
+            'user_id' => $user3->id,
+            'name' => 'ソファーベッド',
+            'image' => 'items/sofabed.png',
+            'brand_name' => 'CAG',
+            'condition' => '目立った傷や汚れなし',
+            'price' => 60000,
+            'description' => 'レトロモダンソファベッド くつろぎと実用性を一体化した心地よい設計',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $SofaBed->categories()->sync([$interior]);
+
+        $SportsWare = Item::create([
+            'user_id' => $user3->id,
+            'name' => 'メンズスポーツウェア',
+            'image' => 'items/sportsware.png',
+            'brand_name' => 'MJ',
+            'condition' => '目立った傷や汚れなし',
+            'price' => 50000,
+            'description' => 'メンズスポーツウェア上下セット サイズ：L',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $SportsWare->categories()->sync([$fashion,$mens,$sport]);
+
+        $BabyClothes = Item::create([
+            'user_id' => $user4->id,
+            'name' => 'ベビー洋服',
+            'image' => 'items/baby_clothes.png',
+            'brand_name' => 'beb',
+            'condition' => '良好',
+            'price' => 1000,
+            'description' => 'ベビー洋服(サイズ100~120cm)',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $BabyClothes->categories()->sync([$fashion,$baby_kids,$clothes]);
+
+        $BabyToy = Item::create([
+            'user_id' => $user4->id,
+            'name' => '子供おもちゃ',
+            'image' => 'items/baby_toy.png',
+            'brand_name' => '',
+            'condition' => '目立った傷や汚れなし',
+            'price' => 500,
+            'description' => '0歳向け知育玩具',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $BabyToy->categories()->sync([$baby_kids,$toy]);
+
+        $LadyCoat = Item::create([
+            'user_id' => $user4->id,
+            'name' => 'レディースコート',
+            'image' => 'items/lady_coat.png',
+            'brand_name' => '',
+            'condition' => '目立った傷や汚れなし',
+            'price' => 5000,
+            'description' => 'レディースのチェスターコート',
+            'status' => Item::STATUS_SELLING,
+        ]);
+        $LadyCoat->categories()->sync([$fashion,$ladies,$clothes]);
     }
 }

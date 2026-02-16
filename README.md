@@ -212,12 +212,12 @@ purchasesは「注文（Order）」の役割を持ち、Stripeは「決済（Pay
  - User4 (テスト商品４〜６を出品)
   - Email：sample4@example.com
   - Password：abc12345
- - User5 (プロフィール未編集、出品なし)
+ - User5 (出品なし)
   - Email：sample5@example.com
   - Password：abc12345
 
 ## Stripe Webhook(手動テスト)について
--  ローカル環境でStripe Webhookを受信するため、事前にターミナルに下記のコマンドを実行し、Webhookリスナーを起動する(重要！)
+-  ローカル環境でStripe Webhookを受信するため、事前にターミナルに下記のコマンドを実行し、Webhookリスナーを起動する(超重要！)
 ```bash
 stripe listen --forward-to http://localhost/stripe/webhook
 ```
@@ -301,34 +301,34 @@ php artisan test --filter=EnvCheckTest
 これにより、テーブル単位ではなく「機能単位」での動作保証を行っている。
 
 ### 各テストの役割
-- AddressTest
+- **AddressTest**
 購入時の配送先住所の入力およびバリデーションを確認している。
 購入時点の住所が purchases テーブルへ正しく保存されることを確認している。
-- CommentTest
+- **CommentTest**
 商品コメント機能を確認している。
 コメントが正しく comments テーブルに保存され、商品と紐づいて表示されることを確認している。
-- FavoriteTest
+- **FavoriteTest**
 お気に入り機能を確認している。
 favorites テーブルへの登録および解除処理が正しく動作することを確認している。
-- ItemTest
+- **ItemTest**
 商品一覧および商品詳細ページが正しく表示されることを確認している。
 SOLD商品の表示状態や出品者情報の紐づけも確認している。
-- MypageTest
+- **MypageTest**
 プロフィール（マイページ）ページが正しく表示されることを確認している。
 ログインユーザーで、プロフィール編集が完了され、マイページが正常に表示される（デフォルトは出品した商品タブで表示される）ことを確認している。
-- ProfileCompletedTest
+- **ProfileCompletedTest**
 プロフィール未登録ユーザーに対する購入制御を確認している。
 住所情報が未入力の場合に購入できないことを確認している。
-- ProfileTest
+- **ProfileTest**
 ユーザープロフィールの更新機能を確認している。
 名前・住所・画像情報が正しく保存されることを確認している。
-- PurchaseTest
+- **PurchaseTest**
 購入ページのアクセス制御および購入条件を確認している。
 自分の出品商品やSOLD商品が購入できないことを確認している。
-- SellTest
+- **SellTest**
 商品出品機能を確認している。
 ログインユーザーのみ出品可能であること、正しく items テーブルに保存されることを確認している。
-- StripeWebhookTest
+- **StripeWebhookTest**
 Stripe決済完了後のWebhook処理を確認している。
 purchases.status の更新および items.status の SOLD 化を確認し、二重更新が発生しないことを確認している。
 
